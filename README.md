@@ -22,21 +22,39 @@ Este repositorio contiene la solución para el **Meli Data Science Challenge**, 
 ```
 meli-products-clustering/
 ├── data/
-│   ├── df_propuesto.csv
-│   └── Meli Data Science Challenge.pdf
+│   ├── clustering_results/
+│   │   ├── products_title_clustering_20250205_153712.csv
+│   │   └── products_title_clustering_20250205_171807.csv
+│   ├── embeddings/
+│   │   └── productos_con_embeddings.pkl
+│   ├── processed/
+│   │   └── productos_limpios.csv
+│   ├── results/
+│   │   ├── dbscan_results_clustering_title.csv
+│   │   ├── hdbscan_results_clustering_title.csv
+│   │   └── clusters_actualizados.csv
+│   └── df_propuesto.csv
 ├── notebooks/
 │   ├── 1_api_exploracion_inicial.ipynb
 │   ├── 2_exploracion_extraccion_datos.ipynb
-│   └── 3_limpieza_estandarizacion_datos.ipynb
+│   ├── 3_limpieza_estandarizacion_datos.ipynb
+│   ├── 4_clustering_text.ipynb
+│   └── 5_clustering_hibrid.ipynb
 ├── models/  (carpeta destinada a guardar futuros modelos entrenados)
 ├── environment.yml
 └── README.md  (este documento)
 ```
 
-- **`data/`:** contiene el CSV de productos (`df_propuesto.csv`) y el PDF con la descripción del reto.  
-- **`notebooks/`:** alberga los Jupyter Notebooks donde se realizan la exploración, extracción y limpieza de datos.  
-- **`models/`:** se destina a almacenar los modelos entrenados o embeddings generados en el futuro.  
-- **`environment.yml`:** especifica las dependencias y versiones de librerías necesarias.
+- **`data/`:** 
+  - **`clustering_results/`:** Archivos CSV con los resultados del clustering de títulos de productos, con timestamps para identificar cuándo se generaron.
+  - **`embeddings/`:** Archivos relacionados con embeddings.
+  - **`processed/`:** Datos que han sido limpiados y procesados.
+  - **`results/`:** Resultados de diferentes algoritmos de clustering.
+  - `df_propuesto.csv`: Archivo CSV con datos propuestos para el análisis.
+
+- **`notebooks/`:** Alberga los Jupyter Notebooks donde se realizan la exploración, extracción, limpieza de datos y clustering.  
+- **`models/`:** Se destina a almacenar los modelos entrenados o embeddings generados en el futuro.  
+- **`environment.yml`:** Especifica las dependencias y versiones de librerías necesarias.
 
 ---
 
@@ -92,6 +110,14 @@ meli-products-clustering/
    - Aplica las funciones de limpieza y normalización a cada columna (título, brand, gtin, price, etc.).  
    - Prepara los datos para la posterior etapa de similitud y clustering.
 
+4. **`4_clustering_text.ipynb`**  
+   - Realiza clustering basado en texto utilizando técnicas de NLP para agrupar productos similares.  
+   - Evalúa la calidad de los clusters formados y ajusta parámetros para optimizar resultados.
+
+5. **`5_clustering_hibrid.ipynb`**  
+   - Implementa un enfoque híbrido de clustering que combina características textuales y visuales.  
+   - Utiliza DBSCAN y UMAP para reducir dimensiones y visualizar los clusters.
+
 > **Nota:** En futuros notebooks, se podrían integrar técnicas de **embeddings** y **clustering**, así como la validación final de los grupos formados.
 
 ---
@@ -117,8 +143,8 @@ meli-products-clustering/
 3. **Limpieza y estandarización**  
    - En `3_limpieza_estandarizacion_datos.ipynb`, se transforman los campos textual, numérico y de imagen para obtener un dataset homogéneo.
 
-4. **(Futuras etapas) Clustering y comparaciones**  
-   - Se podrán crear notebooks adicionales para aplicar algoritmos de similitud y clustering, valiéndose de las columnas limpias.
+4. **Clustering y comparaciones**  
+   - Ejecutar `4_clustering_text.ipynb` y `5_clustering_hibrid.ipynb` para aplicar algoritmos de similitud y clustering, valiéndose de las columnas limpias.
 
 ---
 
@@ -131,5 +157,5 @@ meli-products-clustering/
 
 ### Próximos Pasos
 
-- **Notebook de clustering**: Incorporar técnicas (DBSCAN, K-Means) y calcular similitudes (texto, imágenes) para formar grupos reales.  
 - **Validación humana**: Verificar manualmente algunos grupos para ajustar parámetros.  
+- **Integración de modelos avanzados**: Incorporar técnicas de embeddings y clustering más sofisticadas para mejorar la precisión de los grupos formados.

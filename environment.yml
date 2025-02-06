@@ -14,8 +14,11 @@ dependencies:
   - jupyter
   - ipykernel
   - transformers
+  - spicy
   - pip
   - pip:
       - sentence-transformers  # Biblioteca para embeddings
       - umap-learn
+      - spicy
+      - plotly
 
